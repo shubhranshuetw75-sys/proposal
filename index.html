@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Somya ❤️ Shubhranshu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:radial-gradient(circle at top,#0f2027,#000);
+  color:#fff;
+  overflow:hidden;
+}
+.hidden{display:none}
+
+/* stars */
+.star{
+  position:fixed;
+  width:2px;height:2px;
+  background:white;opacity:.6;
+  animation:float 8s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-10vh)}
+}
+
+/* card */
+.card{
+  background:rgba(255,255,255,.15);
+  padding:32px;
+  border-radius:26px;
+  max-width:560px;
+  margin:6vh auto;
+  text-align:center;
+  box-shadow:0 25px 50px rgba(0,0,0,.45);
+  animation:fade .8s ease;
+}
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* BIG PHOTO */
+.photo{
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid rgba(255,255,255,.9);
+  box-shadow:0 0 35px rgba(255,182,193,.6);
+  margin-bottom:18px;
+}
+
+h1{font-size:2.4em}
+p{font-size:1.18em;line-height:1.7}
+
+button{
+  margin:14px;
+  padding:14px 36px;
+  font-size:1.05em;
+  border:none;border-radius:30px;
+  cursor:pointer;
+  background:#fff;color:#ff5f9e;
+  transition:.2s;
+}
+button:hover{transform:scale(1.1)}
+
+/* fireworks */
+.firework{
+  position:fixed;
+  width:6px;height:6px;
+  border-radius:50%;
+  animation:boom 1.4s ease-out forwards;
+}
+@keyframes boom{
+  0%{box-shadow:none;opacity:1}
+  100%{
+    box-shadow:
+    0 -90px #fff,
+    65px -65px #ff9acb,
+    90px 0 #ffd6e8,
+    65px 65px #ff758c,
+    0 90px #ffc3a0,
+    -65px 65px #ffb6c1,
+    -90px 0 #fff,
+    -65px -65px #ffe4e1;
+    opacity:0
+  }
+}
+
+/* kiss */
+.kiss{
+  position:fixed;
+  font-size:44px;
+  animation:kissFloat 2.6s ease-out forwards;
+}
+@keyframes kissFloat{
+  0%{opacity:0;transform:scale(.5) translateY(0)}
+  30%{opacity:1}
+  100%{opacity:0;transform:scale(1.6) translateY(-140px)}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+for(let i=0;i<60;i++){
+  let s=document.createElement("div");
+  s.className="star";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(5+Math.random()*6)+"s";
+  document.body.appendChild(s);
+}
+</script>
+
+<div class="card" id="p1">
+  <img src="somya.jpg" class="photo">
+  <h1>Hey Somya ❤️</h1>
+  <p>Main kuch khaas kehna chahta hoon… 🌙</p>
+  <button onclick="next('p1','p2')">Continue ✨</button>
+</div>
+
+<div class="card hidden" id="p2">
+  <p>
+    Tumhari muskurahat meri sabse favourite cheez hai 💖<br>
+    Aur tumhari aankhon mein mujhe apna ghar dikhta hai.
+  </p>
+  <button onclick="next('p2','p3')">🥰</button>
+</div>
+
+<div class="card hidden" id="p3">
+  <p>
+    Ab zyada suspense nahi… 😌<br>
+    ek chhoti si deal hai meri taraf se 🤝
+  </p>
+  <button onclick="next('p3','p4')">Deal? 😏</button>
+</div>
+
+<div class="card hidden" id="p4">
+  <h1>Will You Marry Me? 💍</h1>
+  <p>— Shubhranshu ❤️</p>
+  <p style="margin-top:18px;font-size:1.2em;">
+    Haan kar do…<br>
+    <b>ek plate momos main khilaunga 😌🥟</b>
+  </p>
+  <button onclick="next('p4','p5')">YES 😭💖</button>
+</div>
+
+<div class="card hidden" id="p5">
+  <h1>SHE SAID YES!!! 🎉💋</h1>
+  <p>
+    Ab momos bhi meri taraf se,<br>
+    aur zindagi bhi 💕
+  </p>
+</div>
+
+<script>
+function next(a,b){
+  document.getElementById(a).classList.add("hidden");
+  document.getElementById(b).classList.remove("hidden");
+  document.getElementById("music").play();
+
+  if(b==="p5"){
+    celebrate();
+  }
+}
+
+function celebrate(){
+  for(let i=0;i<14;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.top=Math.random()*innerHeight+"px";
+    f.style.left=Math.random()*innerWidth+"px";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1400);
+  }
+
+  for(let i=0;i<12;i++){
+    let k=document.createElement("div");
+    k.className="kiss";
+    k.innerText="💋";
+    k.style.left=Math.random()*100+"vw";
+    k.style.bottom="10px";
+    document.body.appendChild(k);
+    setTimeout(()=>k.remove(),2600);
+  }
+}
+</script>
+
+</body>
+</html>
